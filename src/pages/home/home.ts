@@ -9,29 +9,29 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class HomePage {
   @ViewChild('map') mapElement;
   map:any=null;
-  geoInfo:any={
-      resp:'',
-      data:''
-  };
-
+  latitude;
+  longitude;
   constructor(private geolocation: Geolocation,public navCtrl: NavController) {
   }
   ionViewDidLoad(){
-    this.initMap();
+    
     this.test();
   }
   initMap(){
           var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          scrollwheel: false,
-          zoom: 8
+          center: {lat: this.latitude, lng :this.longitude},
+          zoom: 14
            }); 
   }
   test(){
       let watch = this.geolocation.watchPosition();
       watch.subscribe((data) => {
           console.log(data);
-          this.geoInfo.data=JSON.stringify(data);
+          console.log(data.coords.latitude);
+          console.log(data.coords.longitude);
+          this.latitude = data.coords.latitude;
+          this.longitude = data.coords.longitude;
+          this.initMap();
           // data can be a set of coordinates, or an error (if an error occurred).
           // data.coords.latitude
           // data.coords.longitude
