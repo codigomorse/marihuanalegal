@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -7,6 +7,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild('map') mapElement;
   map:any=null;
   geoInfo:any={
       resp:'',
@@ -14,7 +15,17 @@ export class HomePage {
   };
 
   constructor(private geolocation: Geolocation,public navCtrl: NavController) {
+  }
+  ionViewDidLoad(){
+    this.initMap();
     this.test();
+  }
+  initMap(){
+          var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          scrollwheel: false,
+          zoom: 8
+           }); 
   }
   test(){
       let watch = this.geolocation.watchPosition();
