@@ -18,11 +18,20 @@ export class HomePage {
     this.test();
   }
   initMap(){
-          var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: this.latitude, lng :this.longitude},
-          zoom: 14
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: this.latitude, lng :this.longitude},
+            zoom: 14
            }); 
+        let myLatLng = new google.maps.LatLng(this.latitude,this.longitude);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+        
+
   }
+          
   test(){
       let watch = this.geolocation.watchPosition();
       watch.subscribe((data) => {
