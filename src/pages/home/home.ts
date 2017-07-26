@@ -28,6 +28,13 @@ export class HomePage {
           position: myLatLng,
           title: 'Hello World!'
         });
+        var image = "https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/drugs-32.png";
+        var marker = new google.maps.Marker({
+          map: map,
+          position: {lat: -34.9147836, lng :-56.1498222},
+          icon: image,
+          title: 'Farmacia Caceres'
+        });
         
 
   }
