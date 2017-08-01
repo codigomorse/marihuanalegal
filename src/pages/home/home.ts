@@ -49,17 +49,17 @@ export class HomePage {
       title: 'Hello World!'
     });
     this.dataArr.forEach(element => {
-      console.log(element.farmacia);
+      //console.log(element.farmacia);
       let pos = {lat: element.latitud, lng: element.longitud};
-      console.log(pos);
+      //console.log(pos);
       let options = {
           map: map,
           position: pos,
           icon: image,
           title: element.farmacia
       }
-      console.log(options);
-      marker = new google.maps.Marker(options);
+      //console.log(options);
+      let marker = new google.maps.Marker(options);
       console.log(marker);
       let infoWindow = new google.maps.InfoWindow({
         content: '<h1>'+element.farmacia+'</h1><p>'+element.horario+'</p><p>'+element.stock+'</p>'
