@@ -17,17 +17,17 @@ export class HomePage {
   }
   ionViewDidLoad(){
     this.test();
+  }
+  refresh(){
+    this.test();
   }   
   test(){
     //baja los datos
     this.afDb.list("/stock/").subscribe(_data => {
       this.dataArr = _data;
-      //console.log(this.dataArr);
     });
     //geolocaliza
     this.geolocation.getCurrentPosition().then((resp) => {
-    //console.log(resp.coords.latitude);
-    //console.log(resp.coords.longitude);
     this.latitude = resp.coords.latitude;
     this.longitude = resp.coords.longitude;
     //dibuja el mapa
@@ -41,7 +41,6 @@ export class HomePage {
       center: {lat: this.latitude, lng :this.longitude},
       zoom: 14
     }); 
-    var image = "https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/drugs-32.png";
     let myLatLng = new google.maps.LatLng(this.latitude,this.longitude);
     var marker = new google.maps.Marker({
       map: map,
@@ -49,20 +48,22 @@ export class HomePage {
       title: 'Hello World!'
     });
     this.dataArr.forEach(element => {
-      //console.log(element.farmacia);
+      if(element.stock){
+        var image = "https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/drugs-32.png";
+      }else{
+        var image = "https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/forbidden-32.png";
+      }
       let pos = {lat: element.latitud, lng: element.longitud};
-      //console.log(pos);
       let options = {
           map: map,
           position: pos,
           icon: image,
           title: element.farmacia
       }
-      //console.log(options);
       let marker = new google.maps.Marker(options);
       console.log(marker);
       let infoWindow = new google.maps.InfoWindow({
-        content: '<h1>'+element.farmacia+'</h1><p>'+element.horario+'</p><p>'+element.stock+'</p>'
+        content: '<h1>Farmacia '+element.farmacia+'</h1><p>Horario: '+element.horario+'</p><p>Stock: '+element.stock+'</p>'
       });
       marker.addListener("click", function(){
         infoWindow.open(map, marker);
