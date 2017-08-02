@@ -30,11 +30,11 @@ export class HomePage {
     this.geolocation.getCurrentPosition().then((resp) => {
     this.latitude = resp.coords.latitude;
     this.longitude = resp.coords.longitude;
-    //dibuja el mapa
-    this.initMap();
       }).catch((error) => {
         console.log('Error getting location', error);
       });
+    //dibuja el mapa
+    this.initMap();
   }
   initMap(){
     var map = new google.maps.Map(document.getElementById('map'), {
