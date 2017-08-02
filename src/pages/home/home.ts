@@ -11,8 +11,8 @@ export class HomePage {
   @ViewChild('map') mapElement;
   map:any=null;
   dataArr=[];
-  latitude;
-  longitude;
+  latitude= -34.9011127;
+  longitude= -56.16453139999999;
   constructor(private afDb: AngularFireDatabase,private geolocation: Geolocation,public navCtrl: NavController) {
   }
   ionViewDidLoad(){
@@ -49,9 +49,9 @@ export class HomePage {
     });
     this.dataArr.forEach(element => {
       if(element.stock){
-        var image = "https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/drugs-32.png";
+        var image = "https://firebasestorage.googleapis.com/v0/b/marihuanalegal-38552.appspot.com/o/iconSi.png?alt=media&token=6a536f3e-c480-4ecc-b84c-70a53fdaa096";
       }else{
-        var image = "https://cdn3.iconfinder.com/data/icons/map-markers-2-1/512/forbidden-32.png";
+        var image = "https://firebasestorage.googleapis.com/v0/b/marihuanalegal-38552.appspot.com/o/iconNo.png?alt=media&token=cb7be038-6c3b-4230-b9ab-245189ec64d7";
       }
       let pos = {lat: element.latitud, lng: element.longitud};
       let options = {
