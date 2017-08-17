@@ -26,7 +26,6 @@ export class HomePage {
     this.afDb.list("/stock/").subscribe(_data => {
       this.dataArr = _data;
       console.log(_data);
-      console.log("aca esta la data dibujala papa");
       this.initMap();
     });
     //geolocaliza
@@ -37,8 +36,6 @@ export class HomePage {
         console.log('Error getting location', error);
         this.initMap();
       });
-    //dibuja el mapa
-    //this.initMap();
   }
   initMap(){
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -51,7 +48,6 @@ export class HomePage {
       position: myLatLng,
       title: 'Hello World!'
     });
-    console.log("aca se perdio la data");
     this.dataArr.forEach(element => {
       console.log(element);
       if(element.stock){
