@@ -7,6 +7,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { Catalogo } from '../pages/catalogo/catalogo';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -16,7 +17,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database'
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    Catalogo
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    Catalogo
   ],
   providers: [
     Geolocation,

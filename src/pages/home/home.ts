@@ -26,6 +26,8 @@ export class HomePage {
     this.afDb.list("/stock/").subscribe(_data => {
       this.dataArr = _data;
       console.log(_data);
+      console.log("aca esta la data dibujala papa");
+      this.initMap();
     });
     //geolocaliza
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -33,9 +35,10 @@ export class HomePage {
     this.longitude = resp.coords.longitude;
       }).catch((error) => {
         console.log('Error getting location', error);
+        this.initMap();
       });
     //dibuja el mapa
-    this.initMap();
+    //this.initMap();
   }
   initMap(){
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -48,7 +51,9 @@ export class HomePage {
       position: myLatLng,
       title: 'Hello World!'
     });
+    console.log("aca se perdio la data");
     this.dataArr.forEach(element => {
+      console.log(element);
       if(element.stock){
         var msg="hay stock";
         var image = "https://firebasestorage.googleapis.com/v0/b/marihuanalegal-38552.appspot.com/o/iconSi.png?alt=media&token=6a536f3e-c480-4ecc-b84c-70a53fdaa096";
